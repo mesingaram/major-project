@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-1 col-xs-1 col-sm-1"></div>
+                <div class="col-md-10 col-xs-10 col-sm-10">
+                <h3 class="round3" align="center">Patient List</h3>
+                 </div>
+    <div class="col-md-1 col-xs-1 col-sm-1"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 col-xs-10 col-sm-10"></div>
+                <div class="col-md-2 col-xs-1 col-sm-1">
+          <a href="{% url 'api:patient_create' %}">
+
+          <button type="button" class="btn btn-primary">
+              <span class="glyphicon glyphicon-plus"></span>
+          </button>
+          </a><br>
+
+        </div>
+    </div>
+
+    <br>
+    {% csrf_token %}
+
+    {% if patient_list %}
+    {% for patient in patient_list %}
+    <div class="row">
+        <div class="col-md-1 col-xs-1 col-sm-1"></div>
+            <div class="col-md-7 col-xs-7 col-sm-7">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <h3>
+                            <a href="">
+                                {{ patient.patient_name }}
+                            </a>
+                        </h3>
+                        <br>
+                        {{ patient.created_on }}
+                        <div>
+                            Patient of : {{ patient.doctor }}
+                        </div>
+                    </li>
+                </ul><br>
+
+        </div>
+
+        <div class="col-md-1 col-xs-1 col-sm-1">
+
+            <a href="{% url 'api:patient_mark' patient.id %}">
+                <button type="button" class="btn btn-success">
+                     <span class="glyphicon glyphicon-check"></span>
+                </button>
+            </a>
+        </div>
+
+        <div class="col-md-1 col-xs-1 col-sm-1">
+            <a href="{% url 'api:patient_update' patient.id %}">
+                <button type="button" class="btn btn-info">
+                     <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+            </a>
+        </div>
+
+        <div class="col-md-1 col-xs-1 col-sm-1">
+            <a href="{% url 'api:patient_delete' patient.pk %}">
+                <button type="button" class="btn btn-danger">
+                     <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </a>
+        </div>
+
+</div>
+    {% endfor %}
+    {% endif %}
+
+{% endblock %}

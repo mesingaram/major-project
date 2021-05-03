@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="container">
+    <h1><center>Patient Detail</center></h1><br>
+    <div class="panel panel-default">
+
+
+ 	<div class="panel panel-body">
+
+ 	<table class="table table-stripped">
+ 	<tr>
+        <td><strong>Patient Name</strong></td>
+        <td>{{ patient.patient_name }}</td>
+    </tr>
+        <tr>
+        <td><strong>DOB</strong></td>
+        <td>{{ patient.dob }}</td>
+    </tr>
+        <tr>
+        <td><strong>Email</strong></td>
+        <td>{{ patient.email }}</td>
+    </tr>
+        <tr>
+        <td><strong>Mobile</strong></td>
+        <td>{{ patient.mobile }}</td>
+    </tr>
+        <tr>
+        <td><strong>Doctor Name</strong></td>
+        <td>{{ patient.doctor }}</td>
+    </tr>
+    <tr>
+        <td><strong>Created on</strong></td>
+        <td>{{ patient.created_on }}</td>
+    </tr>
+    <tr>
+        <td><strong>Waiting Status</strong></td>
+        <td>{{ patient.waiting_status }}</td>
+
+    </table>
+    </div>
+</div>
+
+{{ patient.patient_name }}<br> <!-- can use object or patient both will work -->
+{{ object.doctor }}<br>
+{{ object.created_on }}<br>
+{{ object.waiting_status }}<br>
+
+</div>
+{% endblock %}
