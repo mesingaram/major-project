@@ -84,11 +84,11 @@ class HospitalSearch(APIView): # for displaying api response in browser as api o
     def get(self, request, *args, **kwargs):
         try:
             zipcode_ = self.kwargs.get("pk")
-            patients = Doctor.objects.filter(zipcode=zipcode_)
-            serializer = DoctorSerializer(patients, many=True)
+            hospital = Hospital.objects.filter(zipcode=zipcode_)
+            serializer = HospitalSerializer(hospital, many=True)
             new_serializer={'error':False, 'message':'Data found'} # to add error false to serializer data
             new_serializer.update(serializer.data)            # we need to copy it to new dict  (serializer.data is a property of the class and therefore immutable)
             return Response(new_serializer)  # api view
         except:
-            return Response({'error':True, 'message':'Data not found'})
+            return Response({'error':True, 'message':'No Clinic found at this Zip code'})
 

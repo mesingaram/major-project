@@ -40,9 +40,13 @@
                             </a>
                         </h3>
                         <br>
+                        {{patient.mobile}}
+                        <br>
+                        {{patient.email}}
+                        <br>
                         {{ patient.created_on }}
                         <div>
-                            Patient of : {{ patient.doctor }}
+                            Hospital : {{ patient.hospital }}
                         </div>
                     </li>
                 </ul><br>
@@ -51,7 +55,7 @@
 
         <div class="col-sm-9 col-md-10 main">
 
-            <a href="">
+            <a href="{% url 'api:patient_mark' patient.id %}">
                 <button type="button" class="btn btn-success">
                      <span clas="glyphicon glyphicon-check"></span>
                 </button>
@@ -59,7 +63,7 @@
         </div>
 
         <div class="col-md-1">
-            <a href="">
+            <a href="{% url 'api:patient_update' patient.id %}">
                 <button type="button" class="btn btn-success">
                      <span clas="glyphicon glyphicon-pencil"></span>
                 </button>
@@ -67,7 +71,7 @@
         </div>
 
         <div class="col-md-1">
-            <a href="">
+            <a href="{% url 'api:patient_delete' patient.pk %}">
                 <button type="button" class="btn btn-success">
                      <span clas="glyphicon glyphicon-danger"></span>
                 </button>

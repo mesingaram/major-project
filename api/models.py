@@ -21,7 +21,7 @@ class Doctor(models.Model):
         return "Doctor %s " % (self.doctor_name)
 
 class Patient(models.Model):
-    doctor=models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    hospital=models.ForeignKey(Hospital, on_delete=models.CASCADE)
     patient_name=models.CharField(max_length=30)
     email=models.EmailField(default="comp@comp.com" ,max_length = 254)
     mobile = PhoneField(default=1234567890,help_text='Contact phone number')
@@ -43,3 +43,6 @@ class Hospital(models.Model):
     mobile=PhoneField(help_text='Contact phone number')
     email = models.EmailField(default="comp@comp.com", max_length=254)
     # need to add schedule
+    # For displaying hosp name in admin pannel instead of  Hospital object 1
+    def __str__(self):
+        return self.name
