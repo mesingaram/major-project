@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from api.serializers import PatientSerializer
-from api.models import Patient,Doctor
+from api.models import *
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 
@@ -18,6 +18,7 @@ from django.views.generic import ListView, DetailView
 # class PatientVieww(ListAPIView):
 #     queryset=Patient.objects.all()
 #     serializer_class=PatientSerializer
+
 # above code or below code for view as json
 class PatientView(APIView): # for displaying api response in browser as api or as webpage
     def get(self, request, *args, **kwargs):
@@ -92,3 +93,12 @@ class HospitalSearch(APIView): # for displaying api response in browser as api o
         except:
             return Response({'error':True, 'message':'No Clinic found at this Zip code'})
 
+# class PatientsUnderHospitalView(APIView): # api view
+#     def get(self, request, *args, **kwargs):
+#         try:
+#             hosp_patients = Hospital.objects.all().prefetch_related('many_set')
+#             # serializer = PatientSerializer(doc_patients)
+#             # return Response(serializer.data)  # else disp api view
+#             return render(request, 'test.html',{'hosps':hosp_patients}) # as webpage view
+#         except: # if no data found throw not found
+#             return Response({'error':True, 'message':'Data not found'})

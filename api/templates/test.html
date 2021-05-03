@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-1 col-xs-1 col-sm-1"></div>
+                <div class="col-md-10 col-xs-10 col-sm-10">
+                <h3 class="round3" align="center">Doctor List</h3>
+                 </div>
+    <div class="col-md-1 col-xs-1 col-sm-1"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 col-xs-10 col-sm-10"></div>
+                <div class="col-md-2 col-xs-1 col-sm-1">
+          <a href="{% url 'api:patient_create' %}">
+
+          <button type="button" class="btn btn-primary">
+              <span class="glyphicon glyphicon-plus"></span>
+          </button>
+          </a><br>
+
+        </div>
+    </div>
+
+    <br>
+    {% csrf_token %}
+
+    {% if hosps %}
+    {% for hosp in hosps %}
+        {% for patient in hosp.many_set.all %}
+    <div class="row">
+        <div class="col-md-1 col-xs-1 col-sm-1"></div>
+            <div class="col-md-7 col-xs-7 col-sm-7">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <h1>
+                         Hosp  Name:   {{hosp.name}}
+                        </h1>
+                        <h3>
+                            <a href="">
+                              Patient name:  {{ patient.patient_name }}
+                            </a>
+                        </h3>
+                        <br>
+                        {{ patient.created_on }}
+                        <div>
+                            Hospital : {{ patient.hospital }}
+                        </div>
+                    </li>
+                </ul><br>
+
+        </div>
+
+
+</div>
+        {% endfor %}
+    {% endfor %}
+    {% endif %}
+
+{% endblock %}
