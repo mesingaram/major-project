@@ -30,9 +30,9 @@ class PatientView(APIView): # for displaying api response in browser as api or a
 
 class PatientCreateView(CreateView):
     model=Patient
-    fields=['doctor', 'patient_name']
+    fields=['patient_name','hospital','email','mobile','dob']
     template_name='patient_create_form.html'
-    success_url =  reverse_lazy("api:patient_list")
+    success_url =  reverse_lazy("api:patient_list") 
 
 # class PatientDetailView(APIView): # api view
 #     def get(self, request, *args, **kwargs):
@@ -48,13 +48,13 @@ class PatientCreateView(CreateView):
 
 class PatientDetailView(DetailView): # for displaying api response in browser as webpage
     template_name = "patient_detail.html"
-    fields = ['doctor', 'patient_name', 'created_on', 'waiting_status']
+    fields = ['patient_name','hospital','email','mobile','dob', 'created_on', 'waiting_status']
     model=Patient
 
 
 class PatientUpdateView(UpdateView):
     model=Patient
-    fields = ["patient_name", "waiting_status"]
+    fields = ['patient_name','hospital','email','mobile','dob']
     template_name = 'patient_update_form.html'
     success_url = reverse_lazy("api:patient_list")
 
