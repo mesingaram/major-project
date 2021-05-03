@@ -5,10 +5,9 @@ import Services from './pages/Services/Services';
 import Products from './pages/Products/Products';
 import SignUp from './pages/SignUp/SignUp';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import ScrollToTop from './components/ScrollToTop';
 import { Navbar, Footer   } from './components';
 //import Navbar_below from './components/Navbar/Navbar_below';
-import NavBar from './components/NavBar';
+import NavbarTop from './components/Navbar/NavbarTop';
 import Insurance from './components/page/Insurance';
 import Contact from './components/page/Contact';
 import Billpayment from './components/page/Billpayment';
@@ -16,9 +15,8 @@ import Billpayment from './components/page/Billpayment';
 function App() {
   return (
     <Router>
-      <GlobalStyle />
-      <ScrollToTop />
-      <NavBar />  
+      <GlobalStyle />      
+      <NavbarTop />  
       <Navbar />
       
       <Switch>
