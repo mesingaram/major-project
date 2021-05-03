@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.decorators import api_view
 
 from api.serializers import *
 from api.models import *
@@ -85,7 +86,7 @@ class HospitalSearch(APIView): # for displaying api response in browser as api o
     def get(self, request, *args, **kwargs):
         try:
             zipcode_ = self.kwargs.get("pk")
-            hospital = Hospital.objects.filter(zipcode=zipcode_)
+            hospital = Hospital.objects.filter(zipcode=zipcode_ )
             serializer = HospitalSerializer(hospital, many=True)
             nd=list(serializer.data)
             nd.append({'error':False, 'message':'Data found'})  # below line is now working
@@ -95,11 +96,12 @@ class HospitalSearch(APIView): # for displaying api response in browser as api o
         except:
             return Response({'error':True, 'message':'No Clinic found at this Zip code'})
 
+@api_view(['GET'])
 def PatientsUnderHospital(request, name): # api view
      
     #try:
-    hosp_patients = Patient.objects.get(hospital=name)
-    serializer = PatientSerializer(hosp_patients)
+    hosp_patients = Patient.objects.filter(hospital=name)
+    serializer = PatientSerializer(hosp_patients,many=True)
     return Response(serializer.data)  
         #return render(request, 'test.html',{'hosps':hosp_patients}) # as webpage view
     #except: # if no data found throw not found
