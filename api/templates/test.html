@@ -29,24 +29,26 @@
 
     {% if hosps %}
     {% for hosp in hosps %}
-        {% for patient in hosp.many_set.all %}
+        
     <div class="row">
         <div class="col-md-1 col-xs-1 col-sm-1"></div>
             <div class="col-md-7 col-xs-7 col-sm-7">
                 <ul class="list-group">
                     <li class="list-group-item">
                         <h1>
-                         Hosp  Name:   {{hosp.name}}
+                         Patient  Name:   {{hosp.name}}
                         </h1>
                         <h3>
                             <a href="">
-                              Patient name:  {{ patient.patient_name }}
+                              Patient name:  {{ hosp.patient_name }}
                             </a>
                         </h3>
                         <br>
-                        {{ patient.created_on }}
+                        {{ hosp.email }}
+                        <br>
+                        {{ hosp.created_on }}
                         <div>
-                            Hospital : {{ patient.hospital }}
+                            Hospital : {{ hosp.hospital }}
                         </div>
                     </li>
                 </ul><br>
@@ -55,7 +57,7 @@
 
 
 </div>
-        {% endfor %}
+        
     {% endfor %}
     {% endif %}
 

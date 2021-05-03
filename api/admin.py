@@ -11,7 +11,6 @@ from api.models import *
 #     inlines=[PatientInline]
 # 
 # admin.site.register(Doctor, DoctorAdmin)
-admin.site.register(Patient)
 
 class PatientInline(admin.TabularInline):
     model=Patient
@@ -19,6 +18,7 @@ class PatientInline(admin.TabularInline):
 
 class HospitalAdmin(admin.ModelAdmin):
     inlines=[PatientInline]
-    
+
 admin.site.register(Hospital, HospitalAdmin)
 admin.site.register(Doctor)
+admin.site.register(Patient)

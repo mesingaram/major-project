@@ -33,8 +33,8 @@ class Doctor(models.Model):
         return "Doctor %s " % (self.doctor_name)
 
 class Patient(models.Model):
-    hospital=models.ForeignKey(Hospital, on_delete=models.CASCADE)
     patient_name=models.CharField(max_length=30)
+    hospital=models.ForeignKey(Hospital, on_delete=models.CASCADE)
     email=models.EmailField(default="comp@comp.com" ,max_length = 254)
     mobile = PhoneField(default=1234567890,help_text='Contact phone number')
     dob=models.DateField(default=timezone.now,max_length=8)

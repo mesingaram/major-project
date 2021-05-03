@@ -4,8 +4,9 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.decorators import api_view
 
-from api.serializers import PatientSerializer
+from api.serializers import *
 from api.models import *
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
@@ -29,9 +30,9 @@ class PatientView(APIView): # for displaying api response in browser as api or a
 
 class PatientCreateView(CreateView):
     model=Patient
-    fields=['doctor', 'patient_name']
+    fields=['patient_name','hospital','email','mobile','dob']
     template_name='patient_create_form.html'
-    success_url =  reverse_lazy("api:patient_list")
+    success_url =  reverse_lazy("api:patient_list") 
 
 # class PatientDetailView(APIView): # api view
 #     def get(self, request, *args, **kwargs):
@@ -47,13 +48,13 @@ class PatientCreateView(CreateView):
 
 class PatientDetailView(DetailView): # for displaying api response in browser as webpage
     template_name = "patient_detail.html"
-    fields = ['doctor', 'patient_name', 'created_on', 'waiting_status']
+    fields = ['patient_name','hospital','email','mobile','dob', 'created_on', 'waiting_status']
     model=Patient
 
 
 class PatientUpdateView(UpdateView):
     model=Patient
-    fields = ["patient_name", "waiting_status"]
+    fields = ['patient_name','hospital','email','mobile','dob']
     template_name = 'patient_update_form.html'
     success_url = reverse_lazy("api:patient_list")
 
@@ -85,20 +86,23 @@ class HospitalSearch(APIView): # for displaying api response in browser as api o
     def get(self, request, *args, **kwargs):
         try:
             zipcode_ = self.kwargs.get("pk")
-            hospital = Hospital.objects.filter(zipcode=zipcode_)
+            hospital = Hospital.objects.filter(zipcode=zipcode_ )
             serializer = HospitalSerializer(hospital, many=True)
-            new_serializer={'error':False, 'message':'Data found'} # to add error false to serializer data
-            new_serializer.update(serializer.data)            # we need to copy it to new dict  (serializer.data is a property of the class and therefore immutable)
-            return Response(new_serializer)  # api view
+            nd=list(serializer.data)
+            nd.append({'error':False, 'message':'Data found'})  # below line is now working
+            # new_serializer={'error':False, 'message':'Data found'} # to add error false to serializer data
+            # new_serializer=serializer.data     # we need to copy it to new dict  (serializer.data is a property of the class and therefore immutable)
+            return Response(nd)# api view
         except:
             return Response({'error':True, 'message':'No Clinic found at this Zip code'})
 
-# class PatientsUnderHospitalView(APIView): # api view
-#     def get(self, request, *args, **kwargs):
-#         try:
-#             hosp_patients = Hospital.objects.all().prefetch_related('many_set')
-#             # serializer = PatientSerializer(doc_patients)
-#             # return Response(serializer.data)  # else disp api view
-#             return render(request, 'test.html',{'hosps':hosp_patients}) # as webpage view
-#         except: # if no data found throw not found
-#             return Response({'error':True, 'message':'Data not found'})
+@api_view(['GET'])
+def PatientsUnderHospital(request, name): # api view
+     
+    #try:
+    hosp_patients = Patient.objects.filter(hospital=name)
+    serializer = PatientSerializer(hosp_patients,many=True)
+    return Response(serializer.data)  
+        #return render(request, 'test.html',{'hosps':hosp_patients}) # as webpage view
+    #except: # if no data found throw not found
+        #return Response({'error':True, 'message':'Data not found'})
