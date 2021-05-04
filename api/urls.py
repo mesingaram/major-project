@@ -12,5 +12,5 @@ urlpatterns=[
     path("patient/<int:pk>/delete", views.PatientDeleteView.as_view(), name="patient_delete" ),
     path("patient/<int:pk>/mark", views.PatientMark.as_view(), name="patient_mark" ),
     path("hosp/<int:pk>/", views.HospitalSearch.as_view(), name="hospital_search" ),
-    path("hosp_patient/<int:hosp_id>/", views.PatientsUnderHospital.as_view(), name="hosp_patient" ),
+    path("hosp_patient/<str:hosp_id>/", views.PatientsUnderHospital.as_view(), name="hosp_patient" ),
 ]

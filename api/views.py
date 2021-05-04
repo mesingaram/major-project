@@ -1,11 +1,15 @@
+from django.core.mail import send_mail, EmailMultiAlternatives
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
+from django.utils.html import strip_tags
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 
+from Rehab.settings import EMAIL_HOST_USER
 from api.serializers import *
 from api.models import *
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -30,7 +34,7 @@ class PatientView(APIView): # for displaying api response in browser as api or a
 
 class PatientCreateView(CreateView):
     model=Patient
-    fields=['patient_name','hospital','email','mobile','dob']
+    fields=['patient_name','hospital','email','mobile','dob','appointment_date','appointment_time']
     template_name='patient_create_form.html'
     success_url =  reverse_lazy("api:patient_list") 
 
@@ -48,7 +52,7 @@ class PatientCreateView(CreateView):
 
 class PatientDetailView(DetailView): # for displaying api response in browser as webpage
     template_name = "patient_detail.html"
-    fields = ['patient_name','hospital','email','mobile','dob', 'created_on', 'waiting_status']
+    fields = ['patient_name','hospital','email','mobile','dob','appointment_date','appointment_time', 'created_on', 'waiting_status']
     model=Patient
 
 
@@ -70,6 +74,17 @@ class PatientMark(APIView):
         patient=Patient.objects.get(pk=id_)
         patient.waiting_status=False
         patient.save()
+        recepient=str(patient.email)
+        html_content=render_to_string('email_template.html',{'patient':patient})
+        text_content=strip_tags(html_content)
+        email=EmailMultiAlternatives(
+            'Appointment confirmed',  #subject
+            text_content,    #body
+            EMAIL_HOST_USER, #from
+            [recepient],
+        )
+        email.attach_alternative(html_content,"text/html")
+        email.send()
         return redirect('api:patient_list')
 
 class DoctorDetailView(APIView): # api view

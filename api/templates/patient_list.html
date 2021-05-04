@@ -40,13 +40,14 @@
                             </a>
                         </h3>
                         <br>
-                        {{patient.mobile}}
+                        Mobile no: {{patient.mobile}}
                         <br>
-                        {{patient.email}}
+                        Email: {{patient.email}}
                         <br>
-                        {{ patient.created_on }}
+                        Created on: {{ patient.created_on }}
                         <div>
-                        <b>Hospital : {{ patient.hospital }}</b>
+                        <b>Hospital : {{ patient.hospital }}</b><br>
+                        <b>Appointment on : {{patient.appointment_date}} -- {{patient.appointment_time}}</b>
                         </div>
                     </li>
                 </ul><br>

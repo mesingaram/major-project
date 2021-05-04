@@ -1,3 +1,6 @@
+from datetime import datetime, date
+
+from django.forms import forms
 from django.utils import timezone
 from django.db import models
 from phone_field import PhoneField
@@ -26,23 +29,40 @@ class Doctor(models.Model):
     specialization=models.CharField(max_length=70)
     email=models.EmailField(default="comp@comp.com" ,max_length = 254)
     mobile = PhoneField(default=1234567890,help_text='Contact phone number')
-    dob=models.DateField(default=timezone.now,max_length=8)
+    dob=models.DateField(default=date.today ,max_length=8)
 
     # For displaying doctor name in admin pannel instead of  Doctor object 1
     def __str__(self):
         return "Doctor %s " % (self.doctor_name)
 
+appointment_time_choices = (
+    ("10 am", "10 am"),
+    ("11 am", "11 am"),
+    ("12 pm", "12 pm"),
+    ("1 pm", "1 pm"),
+    ("2 pm", "2 pm"),
+    ("3 pm", "3 pm"),
+    ("4 pm", "4 pm"),
+)
 class Patient(models.Model):
     patient_name=models.CharField(max_length=30)
     hospital=models.ForeignKey(Hospital, on_delete=models.CASCADE)
     email=models.EmailField(default="comp@comp.com" ,max_length = 254)
     mobile = PhoneField(default=1234567890,help_text='Contact phone number')
     dob=models.DateField(default=timezone.now,max_length=8)
+    appointment_date=models.DateField(default=date.today ,max_length=8)
+    appointment_time=models.CharField(choices=appointment_time_choices, default='10 am', max_length=10)
     created_on=models.DateTimeField(default=timezone.now)
     waiting_status=models.BooleanField(default=True)
 
     def __str__(self):
         return self.patient_name
+
+    def clean_date(self):
+        date = self.cleaned_data['appointment_date']
+        if date < datetime.date.today():
+            raise forms.ValidationError("The date cannot be in the past!")
+        return date
 
     @property
     def is_waiting(self):
