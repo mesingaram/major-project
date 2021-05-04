@@ -12,6 +12,7 @@ import Insurance from './components/page/Insurance';
 import Contact from './components/page/Contact';
 import Billpayment from './components/page/Billpayment';
 import FindLocation from './pages/FindLocation/FindLocation'
+import Disclaimer from './pages/Disclaimer/Disclaimer';
 
 function App() {
   return (
@@ -26,11 +27,10 @@ function App() {
         <Route path='/services' component={Services} />
         <Route path='/products' component={Products} />
         <Route path='/sign-up' component={SignUp} />
-
         <Route path='/Insurance' exact component={Insurance} />
         <Route path='/Contact' component={Contact} />
         <Route path='/Billpayment' component={Billpayment} />
-      
+        <Route path='/disclaimer' component={Disclaimer}/>      
       </Switch>
       <Footer />
     </Router>

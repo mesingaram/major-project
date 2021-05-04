@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { FaMagento } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { Container } from '../../globalStyles';
 
 export const FooterContainer = styled.div`
   background-color: #101522;
@@ -159,10 +160,50 @@ export const SocialIcons = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 240px;
+  width: 250px;
 `;
 
 export const SocialIconLink = styled.a`
   color: #fff;
   font-size: 24px;
+`;
+
+export const NavbarContainer = styled(Container)`
+  display: flex;
+  justify-content: right;
+  width: 90%;
+
+  ${Container}
+`;
+
+export const NavMenu = styled.ul`
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+  
+`;
+
+export const NavItem = styled.li`
+  height: 40px;
+  border-bottom: 2px solid transparent;
+  font-size: 0.6rem;
+  
+`;
+
+export const NavLinks = styled(Link)`
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  height: 100%;
+
+  @media screen and (max-width: 1060px) {
+    text-align: center;
+    padding: 1rem;
+    width: 100%;
+    display: table;
+    
+  }
 `;
