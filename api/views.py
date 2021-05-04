@@ -96,13 +96,27 @@ class HospitalSearch(APIView): # for displaying api response in browser as api o
         except:
             return Response({'error':True, 'message':'No Clinic found at this Zip code'})
 
-@api_view(['GET'])
-def PatientsUnderHospital(request, name): # api view
-     
-    #try:
-    hosp_patients = Patient.objects.filter(hospital=name)
-    serializer = PatientSerializer(hosp_patients,many=True)
-    return Response(serializer.data)  
-        #return render(request, 'test.html',{'hosps':hosp_patients}) # as webpage view
-    #except: # if no data found throw not found
-        #return Response({'error':True, 'message':'Data not found'})
+# @api_view(['GET'])
+# def PatientsUnderHospital(request, name): # api view
+#
+#     #try:
+#     hosp_patients = Patient.objects.filter(hospital=name)
+#     serializer = PatientSerializer(hosp_patients,many=True)
+#     return Response(serializer.data)
+#         #return render(request, 'test.html',{'hosps':hosp_patients}) # as webpage view
+#     #except: # if no data found throw not found
+#         #return Response({'error':True, 'message':'Data not found'})
+
+class PatientsUnderHospital(APIView): # for displaying api response in browser as api or as webpage
+    def get(self, request, *args, **kwargs):
+        try:
+            zipcode_ = self.kwargs.get("name")
+            hospital = Hospital.objects.filter(zipcode=zipcode_ )
+            serializer = HospitalSerializer(hospital, many=True)
+            nd=list(serializer.data)
+            nd.append({'error':False, 'message':'Data found'})  # below line is now working
+            # new_serializer={'error':False, 'message':'Data found'} # to add error false to serializer data
+            # new_serializer=serializer.data     # we need to copy it to new dict  (serializer.data is a property of the class and therefore immutable)
+            return Response(nd)# api view
+        except:
+            return Response({'error':True, 'message':'No Clinic found at this Zip code'})
