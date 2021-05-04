@@ -19,7 +19,11 @@ import {
   //SocialIcon,
   WebsiteRights,
   SocialIcons,
-  SocialIconLink
+  SocialIconLink,
+  NavbarContainer,
+  NavMenu,
+  NavItem,
+  NavLinks,
 } from './Footer.elements';
 
 function Footer() {
@@ -69,8 +73,37 @@ function Footer() {
       </FooterLinksContainer>
       <SocialMedia>
         <SocialMediaWrap>          
-          <WebsiteRights>ATI Physical Therapy © 2021  |  1.855.MY.ATIPT
+          <WebsiteRights>ATI Physical Therapy © 2021
           </WebsiteRights>
+          <NavbarContainer>            
+            <NavMenu >
+              <NavItem>
+                <NavLinks to='/employee-login'>
+                  Employee Login
+                </NavLinks>
+              </NavItem>
+              <NavItem>
+                <NavLinks to='/disclaimer'>
+                  Disclaimer
+                </NavLinks>
+              </NavItem>
+              <NavItem>
+                <NavLinks to='/privacy-policy'>
+                  Privacy Policy
+                </NavLinks>
+              </NavItem>
+              <NavItem>
+                <NavLinks to='/sitemap'>
+                  Sitemap
+                </NavLinks>
+              </NavItem>
+              <NavItem>
+                <NavLinks to='/find-location'>
+                  Locations
+                </NavLinks>
+              </NavItem>                                         
+            </NavMenu>
+          </NavbarContainer>
           <SocialIcons>
             <SocialIconLink href='' target='_blank' aria-label='Facebook'>
               <FaFacebook />
