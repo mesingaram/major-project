@@ -14,32 +14,32 @@ function NavbarTop() {
           <NavbarContainer>            
             <NavMenu >
               <NavItem>
-                <NavLinks to='/'>
+                <NavLinks to='/find-location'>
                   Find a Location
                 </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to='/services'>
+                <NavLinks to='/appointment'>
                   Request Appointment
                 </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to='/products'>
+                <NavLinks to='/insurance'>
                   Insurance
                 </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to='/'>
+                <NavLinks to='/FAQ'>
                   FAQ
                 </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to='/services'>
+                <NavLinks to='/contact'>
                   Contact
                 </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to='/products'>
+                <NavLinks to='/pay-my-bill'>
                   Pay my bill
                 </NavLinks>
               </NavItem>                           

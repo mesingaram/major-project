@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from '../../globalStyles';
 import {
   FaFacebook,
   FaInstagram,
@@ -9,10 +8,6 @@ import {
 } from 'react-icons/fa';
 import {
   FooterContainer,
-  FooterSubscription,
-  FooterSubText,
-  FooterSubHeading,
-  Form,
   FooterLinksContainer,
   FooterLinksWrapper,
   FooterLinkItems,
@@ -30,25 +25,6 @@ import {
 function Footer() {
   return (
     <FooterContainer>
-
-<FooterSubscription>
-        <FooterSubHeading>
-        Why Work for ATI?
-        </FooterSubHeading>
-        <FooterSubText>Find out why ATI is the company of choice for over 7,000 team members nationwide!         
-        </FooterSubText>
-        <Form>          
-          <Button fontBig>Learn More</Button>
-        </Form>
-      </FooterSubscription>
-      <FooterSubscription>
-        <FooterSubHeading>
-        Ready To Get Started?
-        </FooterSubHeading>        
-        <Form>          
-          <Button fontBig>Request an appointment today!</Button>
-        </Form>
-      </FooterSubscription>
       <FooterLinksContainer>
         <FooterLinksWrapper>
           <FooterLinkItems>
