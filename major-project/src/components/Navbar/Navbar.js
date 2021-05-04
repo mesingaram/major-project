@@ -51,32 +51,32 @@ function Navbar() {
             </MobileIcon>
             <NavMenu onClick={handleClick} click={click}>
               <NavItem>
-                <NavLinks to='/' onClick={closeMobileMenu}>
+                <NavLinks to='/therapy-services' onClick={closeMobileMenu}>
                   Therapy Services
                 </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to='/services' onClick={closeMobileMenu}>
+                <NavLinks to='/new-patient-information' onClick={closeMobileMenu}>
                   New Patient Information
                 </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to='/products' onClick={closeMobileMenu}>
+                <NavLinks to='/business-solutions' onClick={closeMobileMenu}>
                   Business Solutions
                 </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to='/' onClick={closeMobileMenu}>
+                <NavLinks to='/careers' onClick={closeMobileMenu}>
                   Careers
                 </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to='/services' onClick={closeMobileMenu}>
+                <NavLinks to='/blog' onClick={closeMobileMenu}>
                   Blog
                 </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to='/products' onClick={closeMobileMenu}>
+                <NavLinks to='/about-ati' onClick={closeMobileMenu}>
                   About ATI
                 </NavLinks>
               </NavItem>              
