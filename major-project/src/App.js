@@ -14,6 +14,8 @@ import Billpayment from './components/page/Billpayment';
 import FindLocation from './pages/FindLocation/FindLocation'
 import Disclaimer from './pages/Disclaimer/Disclaimer';
 import Appointment from './pages/Appointment/Appointment';
+import TheraphyServices from './pages/TheraphyServices/TheraphyServices';
+import about from './pages/about/about';
 
 function App() {
   return (
@@ -32,7 +34,9 @@ function App() {
         <Route path='/Insurance' exact component={Insurance} />
         <Route path='/Contact' component={Contact} />
         <Route path='/Billpayment' component={Billpayment} />
-        <Route path='/disclaimer' component={Disclaimer}/>      
+        <Route path='/disclaimer' component={Disclaimer}/>
+        <Route path='/about-ati' component={about}/>
+        <Route path='/therapy-services' component={TheraphyServices}/> 
       </Switch>
       <Footer />
     </Router>
