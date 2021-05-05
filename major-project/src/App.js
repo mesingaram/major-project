@@ -13,6 +13,7 @@ import Contact from './components/page/Contact';
 import Billpayment from './components/page/Billpayment';
 import FindLocation from './pages/FindLocation/FindLocation'
 import Disclaimer from './pages/Disclaimer/Disclaimer';
+import Appointment from './pages/Appointment/Appointment';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Switch>
         <Route path='/' exact component={Home} />
         <Route path='/find-location' exact component={FindLocation} />
+        <Route path='/appointment' component={Appointment} />
         <Route path='/services' component={Services} />
         <Route path='/products' component={Products} />
         <Route path='/sign-up' component={SignUp} />
