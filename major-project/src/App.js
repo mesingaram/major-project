@@ -14,6 +14,7 @@ import Billpayment from './components/page/Billpayment';
 import FindLocation from './pages/FindLocation/FindLocation'
 import Disclaimer from './pages/Disclaimer/Disclaimer';
 import Appointment from './pages/Appointment/Appointment';
+import PatientInfo from './pages/PatientInfo/PatientInfo'
 import TheraphyServices from './pages/TheraphyServices/TheraphyServices';
 import about from './pages/about/about';
 
@@ -29,6 +30,7 @@ function App() {
         <Route path='/find-location' exact component={FindLocation} />
         <Route path='/appointment' component={Appointment} />
         <Route path='/services' component={Services} />
+        <Route path='/new-patient-information' component={PatientInfo}/>
         <Route path='/products' component={Products} />
         <Route path='/sign-up' component={SignUp} />
         <Route path='/Insurance' exact component={Insurance} />
