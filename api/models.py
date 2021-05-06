@@ -68,3 +68,11 @@ class Patient(models.Model):
     def is_waiting(self):
         return bool(self.waiting_status)
 
+class Patient_Feedback(models.Model):
+    patient_name=models.CharField(max_length=30)
+    state=models.CharField(max_length=30)
+    email=models.EmailField(default="comp@comp.com" ,max_length = 254)
+    mobile = PhoneField(default=1234567890,help_text='Contact phone number')
+    hospital=models.ForeignKey(Hospital, on_delete=models.CASCADE)
+    feedback=models.CharField(max_length=100)
+    created_on=models.DateTimeField(default=timezone.now)

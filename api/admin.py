@@ -22,3 +22,4 @@ class HospitalAdmin(admin.ModelAdmin):
 admin.site.register(Hospital, HospitalAdmin)
 admin.site.register(Doctor)
 admin.site.register(Patient)
+admin.site.register(Patient_Feedback)
