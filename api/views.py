@@ -47,7 +47,7 @@ class PatientCreateView(CreateView):
 #             return Response(serializer.data)  # else disp api view
 #         except: # if no data found throw not found
 #             return Response({'error':True, 'message':'Data not found'})
-#
+
 
 
 class PatientDetailView(DetailView): # for displaying api response in browser as webpage

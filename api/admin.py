@@ -7,7 +7,7 @@ from api.models import *
 #     model=Patient
 #     extra=0
 
-# class DoctorAdmin(admin.ModelAdmin):
+# class DoctorAdmin(admin.ModelAdmin): 
 #     inlines=[PatientInline]
 # 
 # admin.site.register(Doctor, DoctorAdmin)
