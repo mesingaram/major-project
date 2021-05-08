@@ -1,11 +1,8 @@
 import React from 'react';
 import GlobalStyle from './globalStyles';
 import Home from './pages/HomePage/Home';
-import Services from './pages/Services/Services';
-import Products from './pages/Products/Products';
-import SignUp from './pages/SignUp/SignUp';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Navbar, Footer   } from './components';
+import { Navbar, Footer } from './components';
 //import Navbar_below from './components/Navbar/Navbar_below';
 import NavbarTop from './components/Navbar/NavbarTop';
 import Insurance from './components/page/Insurance';
@@ -21,24 +18,21 @@ import about from './pages/about/about';
 function App() {
   return (
     <Router>
-      <GlobalStyle />      
-      <NavbarTop />  
+      <GlobalStyle />
+      <NavbarTop />
       <Navbar />
-      
+
       <Switch>
         <Route path='/' exact component={Home} />
         <Route path='/find-location' exact component={FindLocation} />
         <Route path='/appointment' component={Appointment} />
-        <Route path='/services' component={Services} />
-        <Route path='/new-patient-information' component={PatientInfo}/>
-        <Route path='/products' component={Products} />
-        <Route path='/sign-up' component={SignUp} />
+        <Route path='/new-patient-information' component={PatientInfo} />
         <Route path='/Insurance' exact component={Insurance} />
         <Route path='/Contact' component={Contact} />
         <Route path='/Billpayment' component={Billpayment} />
-        <Route path='/disclaimer' component={Disclaimer}/>
-        <Route path='/about-ati' component={about}/>
-        <Route path='/therapy-services' component={TheraphyServices}/> 
+        <Route path='/disclaimer' component={Disclaimer} />
+        <Route path='/about-ati' component={about} />
+        <Route path='/therapy-services' component={TheraphyServices} />
       </Switch>
       <Footer />
     </Router>
